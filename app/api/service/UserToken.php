@@ -27,7 +27,7 @@ class UserToken extends Token
             'grant_type'    =>  'authorization_code'
         ];
         $this->wxLoginUrl = config('wx.login_url')
-            .'?='
+            .'?'
             .http_build_query($data);
     }
     public function get()
@@ -41,7 +41,7 @@ class UserToken extends Token
             if ($loginFail) {
                 $this->processLoginError($wxResult);
             } else {
-                $this->grantToken($wxResult);
+                return $this->grantToken($wxResult);
             }
         }
     }

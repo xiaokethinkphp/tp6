@@ -3,7 +3,8 @@
 // | 路由设置
 // +----------------------------------------------------------------------
 use think\facade\Route;
-//Route::rule('api/:version/banner/:id','api/:version.Banner/getBanner');
+Route::get('banner/:id','Banner/getBanner');
+Route::post('token/user', 'Token/getToken');
 return [
     // pathinfo分隔符
     'pathinfo_depr'         => '/',
