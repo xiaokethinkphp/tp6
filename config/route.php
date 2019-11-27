@@ -5,6 +5,13 @@
 use think\facade\Route;
 Route::get('banner/:id','Banner/getBanner');
 Route::post('token/user', 'Token/getToken');
+
+Route::get('product/:id','Product/getOne')
+    ->pattern(['id'=>'\d+']);
+Route::get('product/recent','Product/getRecent');
+Route::get('product/by_category','Product/getAllInCategory');
+
+Route::post('address','Address/createOrUpdateAddress');
 return [
     // pathinfo分隔符
     'pathinfo_depr'         => '/',

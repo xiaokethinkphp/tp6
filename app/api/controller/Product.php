@@ -29,4 +29,14 @@ class Product
 
         return $products;
     }
+
+    public function getOne($id)
+    {
+        (new IDMustBePostiveInt())->goCheck();
+        $product = \app\api\model\Product::getProductDetail($id);
+        if ($product->isEmpty()) {
+            throw new ProductException();
+        }
+        return json($product);
+    }
 }

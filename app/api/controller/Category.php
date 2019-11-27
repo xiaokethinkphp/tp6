@@ -9,7 +9,7 @@ class Category
 {
     public function getAllCategories()
     {
-        $categories = CategoryModel::select([1,2,3],'img');
+        $categories = CategoryModel::with(['img'])->select();
         if ($categories->isEmpty()) {
             throw new CategoryException();
         }
