@@ -14,23 +14,25 @@ class Address
 {
     public function createOrUpdateAddress()
     {
-        (new AddressNew())->goCheck();
+        $validate = new AddressNew();
+        $validate->goCheck();
         // 根据Token获取uid
         // 根据uid查找用户数据，判断用户是否存在，如果不存在则抛出异常
         // 获取客户端提交过来的地址信息
         // 根据用户地址信息是否存在，从而判断是添加地址还是更新地址
-        $uid = TokenService::getCurrentTokenVar();
+        $uid = TokenService::getCurrentUid();
         $user = UserModel::find($uid);
         if (!$user) {
             throw new UserException();
         }
 
+        $dataArray = $validate->getDataByRule(input('post.'));
         $userAddress = $user->address;
         if (!$userAddress) {
-            $user->address()->save();
+            $user->address()->save($dataArray);
         } else {
-            $user->address->save();
+            $user->address->save($dataArray);
         }
-        return new SuccessMessage();
+        throw new SuccessMessage();
     }
 }

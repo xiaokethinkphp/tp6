@@ -10,9 +10,8 @@ namespace app\api\service;
 
 
 use app\lib\exception\TokenException;
-use think\Cache;
+use think\facade\Cache;
 use think\Exception;
-use think\Request;
 
 class Token
 {
@@ -27,7 +26,7 @@ class Token
 
     public static function getCurrentTokenVar($key)
     {
-        $token = Request::instance()
+        $token = \think\facade\Request::instance()
             ->header('token');
         $vars = Cache::get($token);
         if (!$vars) {
