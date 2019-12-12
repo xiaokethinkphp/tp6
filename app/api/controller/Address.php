@@ -9,9 +9,13 @@ use app\api\validate\AddressNew;
 use app\api\service\Token as TokenService;
 use app\lib\exception\SuccessMessage;
 use app\lib\exception\UserException;
-
+use app\middleware\CheckPrimaryScope;
 class Address
 {
+    protected $middleware = [
+        'needPrimaryScope'  => ['only'  =>  'createOrUpdateAddress']
+    ];
+
     public function createOrUpdateAddress()
     {
         $validate = new AddressNew();

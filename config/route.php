@@ -12,6 +12,8 @@ Route::get('product/recent','Product/getRecent');
 Route::get('product/by_category','Product/getAllInCategory');
 
 Route::post('address','Address/createOrUpdateAddress');
+
+Route::post('order','Order/placeOrder');
 return [
     // pathinfo分隔符
     'pathinfo_depr'         => '/',
