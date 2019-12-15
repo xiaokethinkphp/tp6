@@ -17,6 +17,10 @@ class BaseException extends Exception
     // 自定义的错误码
     public $errorCode = 10000;
 
+    /**
+     * BaseException constructor.
+     * @param array $params
+     */
     public function __construct($params = [])
     {
         if (!is_array($params)) {
